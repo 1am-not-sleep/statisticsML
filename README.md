@@ -2,6 +2,20 @@
 
 这个项目把统计机器学习期末选题落成可复现实验：使用公开 PBMC3k 单细胞 RNA-seq 数据，比较 PCA、UMAP、t-SNE 表示下的 K-means、层次聚类和 Louvain 图聚类，并用免疫细胞 marker genes 做结果解释。
 
+## 当前状态
+
+本仓库已经在真实 PBMC3k 数据上跑完完整实验，不是模拟数据结果。当前结果基于本地已下载的 `data/pbmc3k_raw.h5ad`，预处理后保留 `2638` 个细胞和 `1838` 个 highly-variable genes/features。
+
+由于 `.h5ad` 原始数据和处理后的 AnnData 文件体积较大，仓库不会上传这些数据文件；同学 B 或老师 clone 仓库后，可以直接查看 `outputs/` 中已经生成的真实数据结果，也可以运行脚本重新下载 PBMC3k 并复现实验。
+
+建议先读：
+
+- `outputs/run_summary.md`：真实数据实验摘要
+- `outputs/metrics.csv`：K-means、层次聚类、Louvain 的指标对比
+- `outputs/cluster_annotations.csv`：基于 marker genes 的 Louvain cluster 注释建议
+- `docs/teammate_handoff.md`：给同学 B 的交接说明
+- `reports/final_report_template.md`：报告模板
+
 ## 课程对应
 
 - 降维：PCA、t-SNE、UMAP，对应 `main_0509.pdf`
@@ -38,13 +52,13 @@ python scripts/run_pbmc_clustering.py
 python scripts/run_pbmc_clustering.py --max-cells 800 --skip-tsne --stability-repeats 2
 ```
 
-如果网络暂时无法下载 Scanpy PBMC3k 数据，可以先跑离线模拟数据，验证完整流程和图表生成：
+本项目已使用真实 PBMC3k 跑完，模拟数据只作为网络不可用时的离线调试选项，不用于最终报告结论：
 
 ```bash
 python scripts/run_pbmc_clustering.py --source synthetic --max-cells 800 --skip-tsne --stability-repeats 2 --skip-save-adata
 ```
 
-真实数据下载如果在 Codex 沙盒里被网络权限拦住，可以在普通终端运行：
+如果 clone 到新电脑后需要复现真实数据实验：
 
 ```bash
 python scripts/download_pbmc3k.py

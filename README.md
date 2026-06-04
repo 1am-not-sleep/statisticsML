@@ -10,11 +10,11 @@
 
 建议先读：
 
+- `reports/final_report.md`：最终报告 Markdown 版
 - `outputs/run_summary.md`：真实数据实验摘要
 - `outputs/metrics.csv`：K-means、层次聚类、Louvain 的指标对比
 - `outputs/cluster_annotations.csv`：基于 marker genes 的 Louvain cluster 注释建议
 - `docs/teammate_handoff.md`：给同学 B 的交接说明
-- `reports/final_report_template.md`：报告模板
 
 ## 课程对应
 
@@ -80,7 +80,7 @@ python scripts/run_pbmc_clustering.py --input-h5ad path/to/pbmc3k.h5ad
 - `outputs/cluster_annotations.csv`：基于 marker genes 的 cluster 注释建议
 - `outputs/marker_scores.csv`、`outputs/marker_gene_means.csv`：marker 解释表
 - `outputs/figures/`：QC、PCA elbow、UMAP/t-SNE、指标对比、cluster size、marker dotplot/heatmap
-- `outputs/run_summary.md`：自动生成的实验摘要，可直接搬进报告初稿
+- `outputs/run_summary.md`：自动生成的实验摘要，可用于核对报告结论
 
 说明：项目里的 Louvain 使用 Scanpy 生成的细胞 KNN 图，并通过 NetworkX 的 Louvain community detection 计算社区，避免安装较难编译的 `louvain` C 扩展。
 

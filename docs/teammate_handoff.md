@@ -2,21 +2,21 @@
 
 ## 你会收到什么
 
-这个项目已经在真实 PBMC3k 数据上跑完实验。你不需要使用同学 A 的电脑，只需要拿到项目压缩包或 GitHub 仓库即可查看结果、写报告，必要时也可以在自己的电脑上复现。
+这个项目已经在真实 PBMC3k 数据上跑完实验，并已经生成正式报告 Markdown 版。你不需要使用同学 A 的电脑，只需要拿到 GitHub 仓库即可查看结果、审核报告，必要时也可以在自己的电脑上复现。
 
 ## 最重要的文件
 
 - `outputs/run_summary.md`：实验结果摘要，先读这个。
+- `reports/final_report.md`：最终报告 Markdown 版，优先审核这个。
 - `outputs/metrics.csv`：K-means、层次聚类、Louvain 的指标对比。
 - `outputs/cluster_annotations.csv`：Louvain cluster 的 marker gene 注释建议。
 - `outputs/figures/umap_clusters.png`：三类聚类方法在 UMAP 上的结果。
 - `outputs/figures/marker_dotplot.png`：marker genes 对 cluster 注释的支持。
-- `reports/final_report_template.md`：报告模板。
 - `docs/a_handoff.md`：同学 A 的实验交接。
 
 ## 你负责的部分
 
-你主要负责把实验结果写成报告里的生命科学解释：
+你主要负责审核和完善报告里的生命科学解释：
 
 - 解释 PBMC 是什么，为什么适合做单细胞聚类案例。
 - 根据 marker genes 解释 Louvain `resolution=0.8` 的 8 个 cluster。
@@ -49,10 +49,10 @@ python -m pip install pandas scipy scikit-learn scanpy anndata umap-learn networ
 python scripts/run_pbmc_clustering.py --stability-repeats 5
 ```
 
-如果只是写报告，不需要复现，直接使用 `outputs/` 里的图表和 CSV 即可。
+如果只是审核报告，不需要复现，直接使用 `reports/final_report.md`、`outputs/` 里的图表和 CSV 即可。
 
 ## 协作方式
 
-- 同学 A 后续只负责解释代码、补跑实验、调整参数。
-- 同学 B 负责报告背景、marker gene 解释、图表文字说明。
+- 同学 A 后续负责解释代码、补跑实验、调整参数和技术结果核对。
+- 同学 B 负责审核报告背景、marker gene 解释、图表文字说明。
 - 两人共同确认最终报告里的图编号、结论和局限性。

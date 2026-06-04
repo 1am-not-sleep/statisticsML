@@ -2,14 +2,14 @@
 
 ## 角色分工
 
-同学 A：机器学习实验负责人。
+黄玺：机器学习实验负责人。
 
 - 维护 `scripts/run_pbmc_clustering.py` 和 `src/pbmc_project/`
 - 跑通 PBMC3k 下载、QC、PCA、UMAP/t-SNE、K-means、层次聚类、Louvain
 - 维护 `outputs/metrics.csv`、图表和运行参数
 - 在报告中写“方法”和“实验设置/评价指标”
 
-同学 B：生命科学解释与报告负责人。
+叶浩林：生命科学解释与报告负责人。
 
 - 写 PBMC 和 scRNA-seq 背景
 - 根据 `outputs/cluster_annotations.csv`、`outputs/marker_scores.csv` 解释 cluster

@@ -6,7 +6,7 @@
 
 本仓库已经在真实 PBMC3k 数据上跑完完整实验，不是模拟数据结果。当前结果基于本地已下载的 `data/pbmc3k_raw.h5ad`，预处理后保留 `2638` 个细胞和 `1838` 个 highly-variable genes/features。
 
-由于 `.h5ad` 原始数据和处理后的 AnnData 文件体积较大，仓库不会上传这些数据文件；同学 B 或老师 clone 仓库后，可以直接查看 `outputs/` 中已经生成的真实数据结果，也可以运行脚本重新下载 PBMC3k 并复现实验。
+由于 `.h5ad` 原始数据和处理后的 AnnData 文件体积较大，仓库不会上传这些数据文件；叶浩林或老师 clone 仓库后，可以直接查看 `outputs/` 中已经生成的真实数据结果，也可以运行脚本重新下载 PBMC3k 并复现实验。
 
 建议先读：
 
@@ -14,7 +14,7 @@
 - `outputs/run_summary.md`：真实数据实验摘要
 - `outputs/metrics.csv`：K-means、层次聚类、Louvain 的指标对比
 - `outputs/cluster_annotations.csv`：基于 marker genes 的 Louvain cluster 注释建议
-- `docs/teammate_handoff.md`：给同学 B 的交接说明
+- `docs/teammate_handoff.md`：给叶浩林的交接说明
 
 ## 课程对应
 
@@ -86,7 +86,7 @@ python scripts/run_pbmc_clustering.py --input-h5ad path/to/pbmc3k.h5ad
 
 ## 协作建议
 
-同学 A 负责实验 pipeline 和指标，保证脚本从空环境能跑通；同学 B 负责 PBMC 背景、marker gene 注释和报告叙事。每次 A 产出新图时，把图名、参数、它说明什么写进 `outputs/run_summary.md` 或共享文档，B 用同一套文件名整理报告，避免来回找图。
+黄玺负责实验 pipeline 和指标，保证脚本从空环境能跑通；叶浩林负责 PBMC 背景、marker gene 注释和报告叙事。每次黄玺产出新图时，把图名、参数、它说明什么写进 `outputs/run_summary.md` 或共享文档，叶浩林用同一套文件名整理报告，避免来回找图。
 
 ## 报告入口
 

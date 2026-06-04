@@ -1,8 +1,8 @@
-# 给同学 B 的交接说明
+# 给叶浩林的交接说明
 
 ## 你会收到什么
 
-这个项目已经在真实 PBMC3k 数据上跑完实验，并已经生成正式报告 Markdown 版。你不需要使用同学 A 的电脑，只需要拿到 GitHub 仓库即可查看结果、审核报告，必要时也可以在自己的电脑上复现。
+这个项目已经在真实 PBMC3k 数据上跑完实验，并已经生成正式报告 Markdown 版。你不需要使用黄玺的电脑，只需要拿到 GitHub 仓库即可查看结果、审核报告，必要时也可以在自己的电脑上复现。
 
 ## 最重要的文件
 
@@ -12,7 +12,7 @@
 - `outputs/cluster_annotations.csv`：Louvain cluster 的 marker gene 注释建议。
 - `outputs/figures/umap_clusters.png`：三类聚类方法在 UMAP 上的结果。
 - `outputs/figures/marker_dotplot.png`：marker genes 对 cluster 注释的支持。
-- `docs/a_handoff.md`：同学 A 的实验交接。
+- `docs/a_handoff.md`：黄玺的实验交接。
 
 ## 你负责的部分
 
@@ -53,6 +53,6 @@ python scripts/run_pbmc_clustering.py --stability-repeats 5
 
 ## 协作方式
 
-- 同学 A 后续负责解释代码、补跑实验、调整参数和技术结果核对。
-- 同学 B 负责审核报告背景、marker gene 解释、图表文字说明。
+- 黄玺后续负责解释代码、补跑实验、调整参数和技术结果核对。
+- 叶浩林负责审核报告背景、marker gene 解释、图表文字说明。
 - 两人共同确认最终报告里的图编号、结论和局限性。

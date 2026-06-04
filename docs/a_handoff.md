@@ -1,4 +1,4 @@
-# 同学 A 实验交接
+# 黄玺实验交接
 
 ## 当前状态
 
@@ -12,7 +12,7 @@
 - `outputs/cluster_assignments.csv`：每个细胞的聚类标签。
 - `outputs/cluster_annotations.csv`：基于 marker genes 的 Louvain cluster 注释建议。
 - `outputs/marker_scores.csv`、`outputs/marker_gene_means.csv`、`outputs/marker_gene_fractions.csv`：marker 解释表。
-- `outputs/run_summary.md`：可交给同学 B 的自动摘要。
+- `outputs/run_summary.md`：可交给叶浩林的自动摘要。
 - `outputs/figures/`：QC、PCA elbow、UMAP、t-SNE、指标对比、cluster size、marker heatmap/dotplot。
 
 ## 真实 PBMC3k 关键结果
@@ -38,4 +38,4 @@ python scripts/run_pbmc_clustering.py --stability-repeats 5
 python scripts/run_pbmc_clustering.py --max-cells 1200 --skip-tsne --stability-repeats 2
 ```
 
-把 `outputs/run_summary.md`、`outputs/metrics.csv` 和 `outputs/figures/` 发给同学 B 更新报告。
+把 `outputs/run_summary.md`、`outputs/metrics.csv` 和 `outputs/figures/` 发给叶浩林更新报告。

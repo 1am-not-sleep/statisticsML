@@ -8,7 +8,7 @@
 
 ## 摘要
 
-单细胞 RNA-seq 数据通常具有高维、稀疏、噪声较强等特点，是检验降维与聚类方法的典型应用场景。本项目使用公开 PBMC3k 数据，围绕“经典统计机器学习方法能否从高维单细胞表达矩阵中发现具有生物意义的免疫细胞亚群”这一问题，比较 PCA、UMAP、t-SNE 降维表示下的 K-means、层次聚类和 Louvain 图聚类。数据经过质量控制、归一化、`log1p` 转换、高变基因筛选、标准化和 PCA 后，保留 `2638` 个细胞和 `1838` 个 highly-variable genes/features。实验采用内部聚类指标、随机子采样稳定性和 marker gene 生物解释相结合的评价方式。结果显示，K-means 与层次聚类在 `k=5` 时取得较好的内部指标和稳定性；Louvain 在 `resolution=0.8` 时得到 8 个 cluster，更适合进行 PBMC 主要免疫细胞亚群解释。基于 marker genes，主要 cluster 可解释为 CD4 T cells、T cells、B cells、Monocytes、NK cells、Dendritic cells 和 Platelets。整体来看，统计机器学习中的降维与聚类方法可以从 PBMC 单细胞表达矩阵中恢复有意义的细胞群结构，但最终解释不能只依赖几何聚类指标，仍需结合生物 marker 和领域知识。
+单细胞 RNA-seq 数据通常具有高维、稀疏、噪声较强等特点，是检验降维与聚类方法的典型应用场景。本项目使用公开 PBMC3k 数据，围绕“经典统计机器学习方法能否从高维单细胞表达矩阵中发现具有生物意义的免疫细胞亚群”这一问题，以 PCA 作为主要聚类表示，比较 K-means、层次聚类和 Louvain 图聚类，并使用 UMAP/t-SNE 对结果进行二维可视化。数据经过质量控制、归一化、`log1p` 转换、高变基因筛选、标准化和 PCA 后，保留 `2638` 个细胞和 `1838` 个 highly-variable genes/features。实验采用内部聚类指标、随机子采样稳定性和 marker gene 生物解释相结合的评价方式。结果显示，K-means 与层次聚类在 `k=5` 时取得较好的内部指标和稳定性；Louvain 在 `resolution=0.8` 时得到 8 个 cluster，更适合进行 PBMC 主要免疫细胞亚群解释。基于 marker genes，主要 cluster 可解释为 CD4 T cells、T cells、B cells、Monocytes、NK cells、Dendritic cells 和 Platelets。整体来看，统计机器学习中的降维与聚类方法可以从 PBMC 单细胞表达矩阵中恢复有意义的细胞群结构，但最终解释不能只依赖几何聚类指标，仍需结合生物 marker 和领域知识。
 
 关键词：单细胞 RNA-seq；PBMC；PCA；UMAP；t-SNE；K-means；层次聚类；Louvain；marker genes
 
@@ -27,13 +27,15 @@
 预处理流程如下：
 
 1. 读取 PBMC3k 原始表达矩阵。
-2. 进行质量控制，过滤低基因数细胞、低出现频率基因和线粒体比例异常细胞。
+2. 进行质量控制，过滤检测基因数少于 200 的细胞、在少于 3 个细胞中出现的基因、检测基因数高于 2500 的疑似异常细胞，以及线粒体比例高于 5% 的细胞。
 3. 进行 total-count normalization，使不同细胞之间的测序深度更可比。
 4. 对表达值做 `log1p` 转换，降低极端表达值对后续分析的影响。
 5. 筛选 highly-variable genes，保留对细胞间差异贡献较大的基因。
 6. 对表达矩阵进行标准化，并使用 PCA 得到后续聚类和邻接图构建所需的低维表示。
 
 预处理后，数据规模为 `2638` cells × `1838` highly-variable genes/features。该规模保留了主要细胞群结构，同时减少了原始高维表达矩阵中的噪声。
+
+默认运行参数为 `random_state=42`、`n_neighbors=10`。PCA 计算最多 50 个主成分，聚类、KNN 图和内部指标计算使用前 40 个主成分。
 
 ![QC histograms](../outputs/figures/qc_histograms.png)
 
@@ -53,11 +55,11 @@ UMAP 和 t-SNE 主要用于二维可视化。二者都强调局部邻域结构�
 
 ### 3.2 聚类方法
 
-K-means 将细胞划分为 `k` 个簇，并最小化样本到簇中心的平方距离。该方法简单、可解释、运行较快，但默认簇结构接近球形，且需要预先指定 `k`。本项目扫描 `k=4..12`。
+K-means 将细胞划分为 `k` 个簇，并最小化样本到簇中心的平方距离。该方法简单、可解释、运行较快，但默认簇结构接近球形，且需要预先指定 `k`。本项目在 PCA 前 40 个主成分上扫描 `k=4..12`。
 
-层次聚类使用 Ward linkage 构造层次结构，再切分为指定数量的 cluster。与 K-means 相比，层次聚类可以体现簇之间的合并关系，但在样本量较大时计算成本更高。本项目同样扫描 `k=4..12`。
+层次聚类使用 Ward linkage 构造层次结构，再切分为指定数量的 cluster。与 K-means 相比，层次聚类可以体现簇之间的合并关系，但在样本量较大时计算成本更高。本项目同样在 PCA 前 40 个主成分上扫描 `k=4..12`。
 
-Louvain 是图聚类方法。它先基于细胞在 PCA 空间中的近邻关系构造 KNN 图，再通过最大化 modularity 寻找社区结构。单细胞数据中的细胞类型常表现为局部邻域结构或非线性流形，因此 Louvain 常用于细胞群发现。本项目扫描 `resolution=0.4/0.8/1.2`。
+Louvain 是图聚类方法。它先基于细胞在 PCA 空间中的近邻关系构造 KNN 图，再通过最大化 modularity 寻找社区结构。单细胞数据中的细胞类型常表现为局部邻域结构或非线性流形，因此 Louvain 常用于细胞群发现。本项目使用前 40 个主成分和 10 近邻图，扫描 `resolution=0.4/0.8/1.2`。
 
 ### 3.3 评价方式
 

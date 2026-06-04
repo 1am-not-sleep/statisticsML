@@ -8,7 +8,7 @@
 
 ## 摘要
 
-单细胞 RNA-seq 数据通常具有高维、稀疏、噪声较强等特点，是检验降维与聚类方法的典型应用场景。本项目使用公开 PBMC3k 数据，围绕“经典统计机器学习方法能否从高维单细胞表达矩阵中发现具有生物意义的免疫细胞亚群”这一问题，比较 PCA、UMAP、t-SNE 降维表示下的 K-means、层次聚类和 Louvain 图聚类。数据经过质量控制、归一化、`log1p` 转换、高变基因筛选、标准化和 PCA 后，保留 `2638` 个细胞和 `1838` 个 highly-variable genes/features。实验采用内部聚类指标、随机子采样稳定性和 marker gene 生物解释相结合的评价方式。结果显示，K-means 与层次聚类在 `k=5` 时取得较好的内部指标和稳定性；Louvain 在 `resolution=0.8` 时得到 8 个 cluster，更适合进行 PBMC 主要免疫细胞亚群解释。基于 marker genes，主要 cluster 可解释为 CD4 T cells、T cells、B cells、Monocytes、NK cells、Dendritic cells 和 Platelets。整体来看，统计机器学习中的降维与聚类方法可以从 PBMC 单细胞表达矩阵中恢复有意义的细胞群结构，但最终解释不能只依赖几何聚类指标，仍需结合生物 marker 和领域知识。
+单细胞 RNA-seq 数据通常具有高维、稀疏、噪声较强等特点，是检验降维与聚类方法的典型应用场景。本项目使用公开 PBMC3k 数据，围绕“经典统计机器学习方法能否从高维单细胞表达矩阵中发现具有生物意义的免疫细胞亚群”这一问题，以 PCA 作为主要聚类表示，比较 K-means、层次聚类和 Louvain 图聚类，并使用 UMAP/t-SNE 对结果进行二维可视化。数据经过质量控制、归一化、`log1p` 转换、高变基因筛选、标准化和 PCA 后，保留 `2638` 个细胞和 `1838` 个 highly-variable genes/features。实验采用内部聚类指标、随机子采样稳定性和 marker gene 生物解释相结合的评价方式。结果显示，K-means 与层次聚类在 `k=5` 时取得较好的内部指标和稳定性；Louvain 在 `resolution=0.8` 时得到 8 个 cluster，更适合进行 PBMC 主要免疫细胞亚群解释。基于 marker genes，主要 cluster 可解释为 CD4 T cells、T cells、B cells、Monocytes、NK cells、Dendritic cells 和 Platelets。整体来看，统计机器学习中的降维与聚类方法可以从 PBMC 单细胞表达矩阵中恢复有意义的细胞群结构，但最终解释不能只依赖几何聚类指标，仍需结合生物 marker 和领域知识。
 
 关键词：单细胞 RNA-seq；PBMC；PCA；UMAP；t-SNE；K-means；层次聚类；Louvain；marker genes
 

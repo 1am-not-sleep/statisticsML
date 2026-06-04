@@ -1,6 +1,6 @@
 # PBMC 单细胞 RNA-seq 降维与聚类算法比较
 
-这个项目把统计机器学习期末选题落成可复现实验：使用公开 PBMC3k 单细胞 RNA-seq 数据，比较 PCA、UMAP、t-SNE 表示下的 K-means、层次聚类和 Louvain 图聚类，并用免疫细胞 marker genes 做结果解释。
+这个项目把统计机器学习期末选题落成可复现实验：使用公开 PBMC3k 单细胞 RNA-seq 数据，以 PCA 作为主要聚类表示，比较 K-means、层次聚类和 Louvain 图聚类，并用 UMAP/t-SNE 做二维可视化、用免疫细胞 marker genes 做结果解释。
 
 ## 当前状态
 

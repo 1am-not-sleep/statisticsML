@@ -90,4 +90,4 @@ python scripts/run_pbmc_clustering.py --input-h5ad path/to/pbmc3k.h5ad
 
 ## 报告入口
 
-报告骨架在 `reports/final_report_template.md`，分工细则在 `docs/collaboration.md`。
+正式报告 Markdown 版在 `reports/final_report.md`。初稿保留在 `reports/final_report_draft.md`，报告骨架保留在 `reports/final_report_template.md`，分工细则在 `docs/collaboration.md`。
